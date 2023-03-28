@@ -1,8 +1,36 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import axios from 'axios'
+import { urlContext } from '../../App';
 
 export default function MainPokemonCard() {
 
+    const url = useContext(urlContext);
+  
+    /*const [pokemonDetail,setPokemonDetail] = useState({
+        id: '',
+        name:'',
+        sprites: {other["official-artwork"].front_default: ''}
+        
+    });
 
+    const getPokemons = () =>{
+
+        axios.get('https://pokeapi.co/api/v2/pokemon/' + url)
+        .then( (response) => {
+            setPokemonDetail(response.data);
+            //console.log(response.data);
+            console.log(pokemonDetail)
+            })
+            .catch((error) => {
+              alert('El nombre ingresado parece ser incorrecto :(')
+            })
+    }
+
+    useEffect(() => {
+      getPokemons();
+    }, [pokemonDetail.name])*/
+
+    
 
   return (
     <div>
