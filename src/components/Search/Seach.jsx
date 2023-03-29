@@ -1,31 +1,35 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { urlContext } from '../../App';
+import { submitContext } from '../../App';
 
 export default function Seach() {
+
+    const [contextSubmit, setContextSubmit] = useContext(submitContext);
 
     const [contextUrl, setContextUrl] = useContext(urlContext);
 
     const [urlHandler, setUrlHandler]  = useState('');
 
-    const [submitedValue, setSubmitedValue] = useState(0);
     
     const handleName = (event) => {
       let aux =  event.target.value.toLowerCase();
       setUrlHandler(aux);
+      setContextUrl(aux);
     }
 
     const handleSubmit = (event) => { 
-      setSubmitedValue ( submitedValue+1);
+      
       setContextUrl(urlHandler);
       console.log(urlHandler);
       console.log(contextUrl);
       event.preventDefault();
+      setContextSubmit(contextSubmit + 1)
       
     }
     
     useEffect(() => {
       setContextUrl(urlHandler);
-    },[submitedValue])
+    },[contextSubmit])
 
 
     return (

@@ -1,47 +1,37 @@
 import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
-import { urlContext } from '../../App';
+import { submitContext, urlContext } from '../../App';
 
 export default function MainPokemonCard() {
 
     const [contextUrl, setContextUrl] = useContext(urlContext);
+
+    const [contextSubmit, setContextSubmit] = useContext(submitContext);
   
-    const [pokemonDetail,setPokemonDetail] = useState({
-        id: '',
-        name:'',
-        sprites: { other: {'official-artwork': { front_default: " "} } },
-        types: [
-            { type: {name: ''} },
-            { type: {name: ''} }
-        ],
-        stats: [
-            { 0: {base_stat: ''} },
-            { 1: {base_stat: ''} },
-            { 2: {base_stat: ''} },
-            { 3: {base_stat: ''} },
-            { 4: {base_stat: ''} },
-            { 5: {base_stat: ''} },
-        ] 
-    });
+    const [pokemonDetail,setPokemonDetail] = useState(null);
 
     const [pokemonNumbers, setPokemonNumbers] = useState({
         current: 0,
-        previous: '',
-        next: ''
+        previous: 0,
+        next: 0
     });
 
-    const getPokemons = () =>{
+    const getPokemons = async() =>{
 
-        axios.get('https://pokeapi.co/api/v2/pokemon/' + contextUrl)
+        await axios.get('https://pokeapi.co/api/v2/pokemon/' + contextUrl)
         .then( (response) => {
             setPokemonDetail(response.data);
             setPokemonNumbers({current: response.data.id, previous: response.data.id -1, next: response.data.id+1});
             //console.log(response.data.id);
             console.log(pokemonDetail);
+            console.log(pokemonDetail.types);
             console.log(pokemonNumbers);
             console.log(contextUrl);
-            }).catch(() => {
+            
+            }).catch((error) => {
                 alert("nombre incorrecto");
+                console.log(error);
+                return error;
             })
     }
 
@@ -49,13 +39,12 @@ export default function MainPokemonCard() {
 
     useEffect(() => {
       getPokemons();
-    }, [contextUrl])
+    }, [contextSubmit])
 
-    
-    if(pokemonDetail){
+
+    if (contextSubmit === 0){
         return null;
-    }else {
-        
+    }else{
         return (
             <div>
                 <div className="card col-8 rounded mx-auto" style={{border: '10px solid black'}}>
@@ -66,7 +55,7 @@ export default function MainPokemonCard() {
                     </div>
                     <div className="card-doby d-inline-flex ">
                         <div className="col-3 text-center align-self-center">
-                            Type: <br/> a <br/> Poison <br/>
+                            Type: <br/> {pokemonDetail.types[0].type.name} <br/> {pokemonDetail.types.length === 1 ? <></> : pokemonDetail.types[1].type.name} <br/>
                             Weakneses: <br/> 
                         </div>
                         <div className="col-6">
@@ -112,7 +101,9 @@ export default function MainPokemonCard() {
                     </div>
                 </div>
             </div>
-          )
+        )
+        
     }
+    
   
 }
