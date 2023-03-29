@@ -18,22 +18,28 @@ export default function MainPokemonCard() {
 
     const getPokemons = async() =>{
 
-        await axios.get('https://pokeapi.co/api/v2/pokemon/' + contextUrl)
-        .then( (response) => {
-            setPokemonDetail(response.data);
-            setPokemonNumbers({current: response.data.id, previous: response.data.id -1, next: response.data.id+1});
-            //console.log(response.data.id);
-            console.log(pokemonDetail);
-            console.log(pokemonDetail.types);
-            console.log(pokemonNumbers);
-            console.log(contextUrl);
-            
-            }).catch((error) => {
-                alert("nombre incorrecto");
-                console.log(error);
-                return error;
-            })
-    }
+            if (contextUrl === ''){
+                alert("ingresa un nombre")
+            }else {
+                await axios.get('https://pokeapi.co/api/v2/pokemon/' + contextUrl)
+                .then( (response) => {
+                setPokemonDetail(response.data);
+                setPokemonNumbers({current: response.data.id, previous: response.data.id -1, next: response.data.id+1});
+                //console.log(response.data.id);
+                console.log(pokemonDetail);
+                console.log(pokemonDetail.types);
+                console.log(pokemonNumbers);
+                console.log(contextUrl);
+                
+                }).catch((error) => {
+                    alert("nombre incorrecto");
+                    console.log(error);
+                    
+                })
+            }
+        }
+
+    
 
     
 
