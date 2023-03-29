@@ -6,10 +6,10 @@ export const urlContext = createContext();
 
 function App() {
 
-  const [contexUrl, setContextUrl] = useState(''); 
+  const [contextUrl, setContextUrl] = useState(''); 
 
   return (
-    <urlContext.Provider value={[contexUrl, setContextUrl]}>
+    <urlContext.Provider value={[contextUrl, setContextUrl]}>
     <div className="App">
      <Home/>
     </div>
