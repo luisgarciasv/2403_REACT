@@ -7,8 +7,8 @@ export const submitContext= createContext();
 
 function App() {
 
-  const [contextUrl, setContextUrl] = useState('1'); 
-  const [contextSubmit, setContextSubmit] = useState(0);
+  const [contextUrl, setContextUrl] = useState(''); 
+  const [contextSubmit, setContextSubmit] = useState('');
 
   return (
     <submitContext.Provider value={[contextSubmit, setContextSubmit]}>

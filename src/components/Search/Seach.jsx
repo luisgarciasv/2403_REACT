@@ -40,8 +40,8 @@ export default function Seach() {
         <div className="card-body">
           <form >
 
-            <input type="text" 
-            placeholder="Nombre Pokemon"
+            <input type="text"  className='col-6'
+            placeholder="Nombre o numero Pokemon"
             onChange={handleName}
             />  <br />
             <button type="submit" 
