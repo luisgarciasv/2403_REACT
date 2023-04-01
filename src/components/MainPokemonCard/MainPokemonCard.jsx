@@ -13,14 +13,16 @@ export default function MainPokemonCard() {
     const [pokemonDetail, setPokemonDetail] = useState(null);
 
     const [pokemonNumbers, setPokemonNumbers] = useState({
-        current: 0,
-        previous: 0,
-        next: 0
+        current: '',
+        previous: '',
+        next: ''
     });
 
-    const [footerSprite, SetFooterSprite] = useState({
+    const [footerSprite, setFooterSprite] = useState({
         prevSprite : '',
-        nextSprite : ''
+        nextSprite : '',
+        prevName : '',
+        nextName : ''
     });
 
     function checkGeneration (id) {
@@ -59,8 +61,9 @@ export default function MainPokemonCard() {
         (pokemonDetail.stats[4].base_stat) + 
         (pokemonDetail.stats[5].base_stat))
     }
-    
 
+    //function clearImput
+    
     const getPokemons = async(url) =>{
 
             if (contextSubmit === ''){
@@ -70,8 +73,11 @@ export default function MainPokemonCard() {
             }else {
                 await axios.get('https://pokeapi.co/api/v2/pokemon/' + url)
                 .then( (response) => {
-                setPokemonDetail(response.data);
-                setPokemonNumbers({current: response.data.id, previous: response.data.id -1, next: response.data.id+1});
+                    //console.log(response)
+                    setPokemonDetail(response.data);
+                    setPokemonNumbers({current: response.data.id, previous: response.data.id -1, next: response.data.id+1});
+                    //getSprites(response.data.id-1, response.data.id+1);
+                    getSpritesFooter(response.data.id-1, response.data.id+1);
                 }).catch((error) => {
                     alert("El nombre o numero Pokemon no existe.");
                     console.log(error);
@@ -79,8 +85,46 @@ export default function MainPokemonCard() {
             }
         }
 
+
+    const getSpritesFooter = async(urlPrev,urlNext) =>{
+        console.log(urlPrev)
+        console.log(urlNext)
+        
+        if (urlPrev === 0){
+            await axios.get('https://pokeapi.co/api/v2/pokemon/' + urlNext)
+            .then((response) => {
+                setFooterSprite({nextSprite : response.data.sprites.front_default,
+                nextName : response.data.name
+                })
+            })
+        } else if (urlNext === 1011){
+            await axios.get('https://pokeapi.co/api/v2/pokemon/' + urlPrev)
+            .then((response) => {
+                setFooterSprite({prevSprite : response.data.sprites.front_default,
+                    prevName : response.data.name
+                })
+            })
+        } else {
+            axios.all(
+                [await axios.get('https://pokeapi.co/api/v2/pokemon/' + urlPrev),
+                await axios.get('https://pokeapi.co/api/v2/pokemon/' + urlNext)]
+            ).then((response) =>{
+            console.log(response)
+            setFooterSprite({prevSprite: response[0].data.sprites.front_default , 
+                nextSprite: response[1].data.sprites.front_default ,
+                prevName : response[0].data.name,
+                nextName : response[1].data.name
+            });
+
+            //console.log(footerSprite)
+            })
+        }
+        }
+    
+
     useEffect(() => {
       getPokemons(contextUrl);
+      
     }, [contextSubmit])
 
 
@@ -140,28 +184,32 @@ export default function MainPokemonCard() {
                         
                     </div>
                     <div className="card-footer d-inline-flex justify-content-center">
-                        <div className='card col-5 mx-4 bg-light ' 
-                        style={{cursor : 'pointer'}}
-                        onClick={() => {setContextUrl(pokemonNumbers.previous)
-                            ; 
-                        setContextSubmit(contextSubmit+1)}}> 
-                            <div className="row d-flex align-items-center justify-content-center">
-                                <img className='me-2'  src={arrowPrev} style={{height: 30, width: 'auto', padding : 0, margin:0}} alt='previous icon'/>
-                                <img style={{height: 60, width: 'auto', padding : 0, margin:0 }} src={pokemonDetail.sprites.front_default} alt={pokemonDetail.name}/>
-                            #{pokemonNumbers.previous}
+                        {pokemonNumbers.current > 1 && (
+                            <div className='card col-4 mx-4 bg-light ' 
+                            style={{cursor : 'pointer'}}
+                            onClick={() => {setContextUrl(pokemonNumbers.previous)
+                                ; 
+                            setContextSubmit(contextSubmit+1)}}> 
+                                <div className="row d-flex align-items-center justify-content-center">
+                                    <img className='me-2'  src={arrowPrev} style={{height: 30, width: 'auto', padding : 0, margin:0}} alt='previous icon'/>
+                                    <img style={{height: 60, width: 'auto', padding : 0, margin:0 }} src={footerSprite.prevSprite} alt={footerSprite.prevName}/>
+                                #{pokemonNumbers.previous}
+                                </div>
                             </div>
-                        </div>
-                        <div className='card col-5 mx-4 bg-light' 
-                        style={{cursor : 'pointer'}}
-                        onClick={() => {setContextUrl(pokemonNumbers.next)
-                            ; 
-                        setContextSubmit(contextSubmit+1)}}> 
-                            <div className="row d-flex align-items-center justify-content-center">
-                                <img style={{height: 60, width: 'auto', padding : 0, margin:0 }} src={pokemonDetail.sprites.front_default} alt={pokemonDetail.name}/>  
-                            #{pokemonNumbers.next}
-                            <img className='ms-3'  src={arrowNext} style={{height: 30, width: 'auto', padding : 0, margin:0}} alt='next icon'/>
+                        )}
+                        {pokemonNumbers.current < 1010 && (
+                            <div className='card col-4 mx-4 bg-light' 
+                            style={{cursor : 'pointer'}}
+                            onClick={() => {setContextUrl(pokemonNumbers.next)
+                                ; 
+                            setContextSubmit(contextSubmit+1)}}> 
+                                <div className="row d-flex align-items-center justify-content-center">
+                                    <img style={{height: 60, width: 'auto', padding : 0, margin:0 }} src={footerSprite.nextSprite} alt={footerSprite.nextName}/>  
+                                #{pokemonNumbers.next}
+                                <img className='ms-3'  src={arrowNext} style={{height: 30, width: 'auto', padding : 0, margin:0}} alt='next icon'/>
+                                </div>
                             </div>
-                        </div>
+                        )}
 
                         
                     </div>
