@@ -1,6 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react'
-import axios from 'axios'
+import React, { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
 import { submitContext, urlContext } from '../../App';
+import arrowPrev from '../img/arrow-previous.svg';
+import arrowNext from '../img/arrow-next.svg';
 
 export default function MainPokemonCard() {
 
@@ -8,12 +10,17 @@ export default function MainPokemonCard() {
 
     const [contextSubmit, setContextSubmit] = useContext(submitContext);
   
-    const [pokemonDetail,setPokemonDetail] = useState(null);
+    const [pokemonDetail, setPokemonDetail] = useState(null);
 
     const [pokemonNumbers, setPokemonNumbers] = useState({
         current: 0,
         previous: 0,
         next: 0
+    });
+
+    const [footerSprite, SetFooterSprite] = useState({
+        prevSprite : '',
+        nextSprite : ''
     });
 
     function checkGeneration (id) {
@@ -45,26 +52,26 @@ export default function MainPokemonCard() {
     }
 
     function getTotalStat (){
-        return ((pokemonDetail.stats[0].base_stat) + (pokemonDetail.stats[1].base_stat) + (pokemonDetail.stats[2].base_stat) +(pokemonDetail.stats[3].base_stat) + (pokemonDetail.stats[4].base_stat) + (pokemonDetail.stats[5].base_stat))
+        return ((pokemonDetail.stats[0].base_stat) + 
+        (pokemonDetail.stats[1].base_stat) + 
+        (pokemonDetail.stats[2].base_stat) +
+        (pokemonDetail.stats[3].base_stat) + 
+        (pokemonDetail.stats[4].base_stat) + 
+        (pokemonDetail.stats[5].base_stat))
     }
+    
 
-    const getPokemons = async() =>{
+    const getPokemons = async(url) =>{
 
             if (contextSubmit === ''){
                 
             }else if (contextUrl === '' && contextSubmit !== ''){
                 alert("Ingresa un nombre o numero Pokemon.")
             }else {
-                await axios.get('https://pokeapi.co/api/v2/pokemon/' + contextUrl)
+                await axios.get('https://pokeapi.co/api/v2/pokemon/' + url)
                 .then( (response) => {
                 setPokemonDetail(response.data);
                 setPokemonNumbers({current: response.data.id, previous: response.data.id -1, next: response.data.id+1});
-                //console.log(response.data.id);
-                //console.log(pokemonDetail);
-                //console.log(pokemonDetail.types);
-                //console.log(pokemonNumbers);
-                //console.log(contextUrl);
-                
                 }).catch((error) => {
                     alert("El nombre o numero Pokemon no existe.");
                     console.log(error);
@@ -73,7 +80,7 @@ export default function MainPokemonCard() {
         }
 
     useEffect(() => {
-      getPokemons();
+      getPokemons(contextUrl);
     }, [contextSubmit])
 
 
@@ -96,7 +103,7 @@ export default function MainPokemonCard() {
                             Weakneses: <br/> 
                         </div>
                         <div className="col-6 d-flex">
-                            <img  className='img-fluid p-4 mx-auto my-auto' src={pokemonDetail.sprites.other['official-artwork'].front_default} />
+                            <img  className='img-fluid p-4 mx-auto my-auto' src={pokemonDetail.sprites.other['official-artwork'].front_default} alt={pokemonDetail.name}/>
                         </div>
                         <div className="col-3 text-center align-self-center pe-3">
                         
@@ -132,9 +139,31 @@ export default function MainPokemonCard() {
                         </div>
                         
                     </div>
-                    <div className="card-footer d-inline-flex">
-                        <div className="col-6">← #093</div>
-                        <div className="col-6">#095 →</div>
+                    <div className="card-footer d-inline-flex justify-content-center">
+                        <div className='card col-5 mx-4 bg-light ' 
+                        style={{cursor : 'pointer'}}
+                        onClick={() => {setContextUrl(pokemonNumbers.previous)
+                            ; 
+                        setContextSubmit(contextSubmit+1)}}> 
+                            <div className="row d-flex align-items-center justify-content-center">
+                                <img className='me-2'  src={arrowPrev} style={{height: 30, width: 'auto', padding : 0, margin:0}} alt='previous icon'/>
+                                <img style={{height: 60, width: 'auto', padding : 0, margin:0 }} src={pokemonDetail.sprites.front_default} alt={pokemonDetail.name}/>
+                            #{pokemonNumbers.previous}
+                            </div>
+                        </div>
+                        <div className='card col-5 mx-4 bg-light' 
+                        style={{cursor : 'pointer'}}
+                        onClick={() => {setContextUrl(pokemonNumbers.next)
+                            ; 
+                        setContextSubmit(contextSubmit+1)}}> 
+                            <div className="row d-flex align-items-center justify-content-center">
+                                <img style={{height: 60, width: 'auto', padding : 0, margin:0 }} src={pokemonDetail.sprites.front_default} alt={pokemonDetail.name}/>  
+                            #{pokemonNumbers.next}
+                            <img className='ms-3'  src={arrowNext} style={{height: 30, width: 'auto', padding : 0, margin:0}} alt='next icon'/>
+                            </div>
+                        </div>
+
+                        
                     </div>
                 </div>
             </div>
