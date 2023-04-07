@@ -124,7 +124,7 @@ export default function MainPokemonCard() {
 
     useEffect(() => {
       getPokemons(contextUrl);
-      
+    
     }, [contextSubmit])
 
 
@@ -134,7 +134,7 @@ export default function MainPokemonCard() {
         return null;
     }else{    
         return (
-            <div>
+            <div >
                 <div className="card col-8 rounded mx-auto" style={{border: '10px solid black'}}>
                     <div className="card-header d-inline-flex">
                         <div className="col-2 text-start">#{pokemonDetail.id}</div>
@@ -176,8 +176,8 @@ export default function MainPokemonCard() {
                             <div className='progress-bar bg-dark' style={{width : (pokemonDetail.stats[5].base_stat/255)*100 + '%'}}></div>
                             </div><br />
                             Total: {getTotalStat()} <br />
-                            <div style={{height : 8 + 'px'}} className='progress' role='progressbar' aria-label='Total stats' aria-valuenow='60' aria-valuemin='0' aria-valuemax='720'>
-                            <div className='progress-bar bg-dark' style={{width : (getTotalStat()/720)*100 + '%'}}></div>
+                            <div style={{height : 8 + 'px'}} className='progress' role='progressbar' aria-label='Total stats' aria-valuenow='60' aria-valuemin='0' aria-valuemax='750'>
+                            <div className='progress-bar bg-dark' style={{width : (getTotalStat()/750)*100 + '%'}}></div>
                             </div><br />
                             
                         </div>
