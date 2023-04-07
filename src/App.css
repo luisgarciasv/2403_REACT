@@ -36,3 +36,56 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* Autocomplete */
+
+.test-position {
+  border: 1px solid #999;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  position: relative;
+}
+
+.test-input {
+  width: 30%;
+}
+.no-autocomplete {
+  color: #999;
+  padding: 8px;
+  background: white;
+  border: 1px solid #999;
+  list-style: none;
+  overflow-y: auto;
+  padding-left: 0;
+  width: 30%;
+  position: absolute;
+  left: 35%;
+  z-index: 2;
+}
+.autocomplete {
+  border: 1px solid #999;
+  list-style: none;
+  margin-top: 0;
+  max-height: 30vh;
+  overflow-y: auto;
+  padding-left: 0;
+  width: 30%;
+  position: absolute;
+  left: 35%;
+  z-index: 2;
+}
+.autocomplete li {
+  padding: 8px;
+  background: white;
+}
+.autocomplete > .active,
+.autocomplete li:hover {
+  background-color: darkgray;
+  cursor: pointer;
+  font-weight: 700;
+}
+.autocomplete li:not(:last-of-type) {
+  border-bottom: 1px solid #999;
+}
