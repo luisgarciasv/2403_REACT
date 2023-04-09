@@ -6,7 +6,7 @@ import loadingGif from '../img/loading.gif'
 export default function FilterCard({pokemonUrl}) {
 
     const [pokemonDetail, setPokemonDetail] = useState({
-        name : '',
+        name : 'place holder',
         sprites: { other: {'official-artwork' :{front_default : loadingGif}}}
     });
     

@@ -22,24 +22,24 @@ export default function Filter() {
         await axios.get('https://pokeapi.co/api/v2/type/?limit=18')
         .then((response) => {
             setTypes(response.data.results);
-            console.log(types);
+            //console.log(types);
         })
     }
 
     const clickType = async (event) => { 
-        if(event.target.getAttribute('isselected') === 'false'){
-            event.target.setAttribute('isselected','true');
+        if(event.currentTarget.getAttribute('isselected') === 'false'){
+            event.currentTarget.setAttribute('isselected','true');
             setSelectedFilters(selectedFilters +1);
-        } else if(event.target.getAttribute('isselected') === 'true'){
-            event.target.setAttribute('isselected','false');
+        } else if(event.currentTarget.getAttribute('isselected') === 'true'){
+            event.currentTarget.setAttribute('isselected','false');
             setSelectedFilters(selectedFilters - 1);}
-        let aux = event.target.getAttribute("data-url")
+        let aux = event.currentTarget.getAttribute("data-url")
         
-        setSelectedTypes({type1 : aux})
+        //setSelectedTypes({type1 : aux})
         
         await axios.get(aux)
         .then((response) => {
-            console.log(response.data.pokemon)
+            //console.log(response.data.pokemon)
             setPokeList(response.data.pokemon);
         })
         //console.log(event)
@@ -66,7 +66,7 @@ export default function Filter() {
                 )}
             </div>
 
-            {selectedFilters > 0 && selectedFilters < 3 ?  
+            {selectedFilters > 0 ?  
                 <div className='card d-block'>
                     {pokeList.map((pokemon, index) => 
                     <FilterCard pokemonUrl={pokemon.pokemon} key={index}/>
