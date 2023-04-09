@@ -73,7 +73,7 @@ export default function MainPokemonCard() {
             }else {
                 await axios.get('https://pokeapi.co/api/v2/pokemon/' + url)
                 .then( (response) => {
-                    //console.log(response)
+                    console.log(response.data)
                     setPokemonDetail(response.data);
                     setPokemonNumbers({current: response.data.id, previous: response.data.id -1, next: response.data.id+1});
                     //getSprites(response.data.id-1, response.data.id+1);

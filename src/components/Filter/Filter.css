@@ -1,5 +1,4 @@
 button {
-  border: none;
   color: white;
   font-weight: bold;
   margin: 5px;
@@ -13,7 +12,9 @@ button {
   width: 100px;
 }
 
-
+button[isselected='true']{
+  border: 4px solid rgba(121, 134, 152, 0.603);
+}
 
 .btnnormal{background-color: #A8A77A}
 .btnfire{background-color: #EE8130}
