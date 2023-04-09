@@ -3,16 +3,16 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import loadingGif from '../img/loading.gif'
 
-export default function FilterCard({pokemonUrl}) {
+export default function FilterCard({pokemon}) {
 
     const [pokemonDetail, setPokemonDetail] = useState({
-        name : 'place holder',
+        name : 'loading ...',
         sprites: { other: {'official-artwork' :{front_default : loadingGif}}}
     });
     
 
     const getPokemonDetail = (url) => {
-          axios.get(url)
+        axios.get(url)
         .then((response) => {
             setPokemonDetail(response.data)
         
@@ -20,8 +20,8 @@ export default function FilterCard({pokemonUrl}) {
     }
     
     useEffect(() => {
-        getPokemonDetail(pokemonUrl.url);
-    },[pokemonUrl.url])
+        getPokemonDetail(pokemon.url);
+    },[pokemon.url])
 
   return (
     <div className='d-inline-flex col-2'>

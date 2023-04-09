@@ -143,7 +143,7 @@ export default function MainPokemonCard() {
                     </div>
                     <div className="card-doby d-inline-flex ">
                         <div className="col-3 text-center align-self-center">
-                            <p>Type:</p> 
+                            <p>Type</p> 
                             <button className={ `btn${pokemonDetail.types[0].type.name}` }>
                                 {capitalizeName(pokemonDetail.types[0].type.name) } 
                             </button><br/> 
