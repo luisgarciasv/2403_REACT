@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import './Filter.css'
+import FilterCard from './FilterCard';
 
 export default function Filter() {
 
@@ -56,12 +57,11 @@ if (selectedFilters === 0){
   else {
     return(
         <div className='card d-block'>
-            {pokeList.map((pokemon, index) =>
-            <h1 
-            key={index}
-            data-url={pokemon.pokemon.url}>
-            {pokemon.pokemon.name}
-            </h1>)}
+            {pokeList.map((pokemon, index) => 
+                <FilterCard pokemonUrl={pokemon.pokemon.url} key={index}/>
+            )
+            
+            }
         </div>
     )
   }

@@ -143,8 +143,15 @@ export default function MainPokemonCard() {
                     </div>
                     <div className="card-doby d-inline-flex ">
                         <div className="col-3 text-center align-self-center">
-                            Type: <br/> {capitalizeName(pokemonDetail.types[0].type.name) } <br/> {pokemonDetail.types.length === 1 ? <></> : capitalizeName(pokemonDetail.types[1].type.name) } <br/>
-                            Weakneses: <br/> 
+                            <p>Type:</p> 
+                            <button className={ `btn${pokemonDetail.types[0].type.name}` }>
+                                {capitalizeName(pokemonDetail.types[0].type.name) } 
+                            </button><br/> 
+                            {pokemonDetail.types.length === 1 ? <></> : 
+                            (<button className={ `btn${pokemonDetail.types[1].type.name}` }>
+                            {capitalizeName(pokemonDetail.types[1].type.name) } 
+                            </button>)} <br/>
+                            
                         </div>
                         <div className="col-6 d-flex">
                             <img  className='img-fluid p-4 mx-auto my-auto' src={pokemonDetail.sprites.other['official-artwork'].front_default} alt={pokemonDetail.name}/>
