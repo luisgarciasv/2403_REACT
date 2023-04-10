@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import './Filter.css'
+
 import FilterCard from './FilterCard';
 
 export default function Filter() {

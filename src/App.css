@@ -1,5 +1,13 @@
+body {
+  background-image: url(./components/img/Moon.svg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: auto;
+}
+
 .App {
   text-align: center;
+  
 }
 
 .App-logo {
@@ -88,4 +96,63 @@
 }
 .autocomplete li:not(:last-of-type) {
   border-bottom: 1px solid #999;
+}
+
+button {
+  color: white;
+  font-weight: bold;
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  border-radius: 20px;
+  border: 1px solid #aaa;
+  width: 100px;
+}
+
+
+
+.btnnormal{background-color: #A8A77A}
+.btnfire{background-color: #EE8130}
+.btnwater{background-color: #6390F0}
+.btnelectric{background-color: #F7D02C}
+.btngrass{background-color: #7AC74C}
+.btnice{background-color: #96D9D6}
+.btnfighting{background-color: #C22E28}
+.btnpoison{background-color: #A33EA1}
+.btnground{background-color: #E2BF65}
+.btnflying{background-color: #A98FF3}
+.btnpsychic{background-color: #F95587}
+.btnbug{background-color: #A6B91A}
+.btnrock{background-color: #B6A136}
+.btnghost{background-color: #735797}
+.btndragon{background-color: #6F35FC}
+.btnsteel{background-color: #B7B7CE}
+.btndark{background-color: #705746}
+.btnfairy{background-color: #D685AD}
+
+
+.img-search {
+  height: 50px;
+}
+
+.img-filter{
+  height: 50px;
+}
+
+.t-search{
+  float: inline-start;
+  padding: 0;
+  margin: 0;
+}
+
+.main-footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: transparent;
+  text-align: center;
 }

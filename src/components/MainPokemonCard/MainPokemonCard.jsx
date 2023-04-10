@@ -69,8 +69,8 @@ export default function MainPokemonCard() {
 
             if (contextSubmit === 0){
                 
-            }else if (contextUrl === '' && contextSubmit !== ''){
-                alert("Ingresa un nombre o numero Pokemon.")
+            }else if (contextUrl === '' && contextSubmit !== 0){
+                
             }else {
                 await axios.get('https://pokeapi.co/api/v2/pokemon/' + url)
                 .then( (response) => {
@@ -133,9 +133,9 @@ export default function MainPokemonCard() {
     }, [] )
 
 
-    if (contextSubmit === null || pokemonDetail === null){
+    if (contextSubmit === 0 || pokemonDetail === null){
         return null;
-    }else if (contextSubmit === null && pokemonDetail === null){
+    }else if (contextSubmit === 0 && pokemonDetail === null){
         return null;
     }else{    
         return (

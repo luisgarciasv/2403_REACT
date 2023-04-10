@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Filter from '../Filter/Filter'
 import MainPokemonCard from '../MainPokemonCard/MainPokemonCard'
 import Seach from '../Search/Seach'
+import Footer from '../Footer/Footer'
 import searchIcon from '../img/search-icon.svg'
 import filterIcon from '../img/filter-icon.svg'
 
@@ -33,15 +34,17 @@ export default function Home() {
 
   return (
     <div>
-      <div className="card d-block">
-        <h3 className='col-3'>buscar</h3>
+      <div className="card d-block ">
+        
         <button className='btn col-1' onClick={handleClickSearch}>
-          <img className='img-fluid' src={searchIcon} alt="search icon" />
+          <img className='img-search' src={searchIcon} alt="search icon" />
+          <p className='text-muted'>Search</p>
         </button>
         <button className='btn col-1' onClick={handleClickFilter}>
-        <img className='img-fluid' src={filterIcon} alt="filter icon" />
+        <img className='img-filter' src={filterIcon} alt="filter icon" />
+        <p className='text-muted'>Filter</p>
         </button>
-        <h3 className='col-3'>Filtrar</h3>
+        
       </div>
       <div className="card">
       {renderSearch ? <><Seach/> <MainPokemonCard/></> : <></>}
@@ -49,7 +52,7 @@ export default function Home() {
       
       </div>
   
-     
+     <Footer/>
     </div>
   )
 }
