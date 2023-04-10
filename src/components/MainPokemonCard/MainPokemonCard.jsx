@@ -4,6 +4,7 @@ import { submitContext, urlContext } from '../../App';
 import arrowPrev from '../img/arrow-previous.svg';
 import arrowNext from '../img/arrow-next.svg';
 
+
 export default function MainPokemonCard() {
 
     const [contextUrl, setContextUrl] = useContext(urlContext);
@@ -66,7 +67,7 @@ export default function MainPokemonCard() {
     
     const getPokemons = async(url) =>{
 
-            if (contextSubmit === ''){
+            if (contextSubmit === 0){
                 
             }else if (contextUrl === '' && contextSubmit !== ''){
                 alert("Ingresa un nombre o numero Pokemon.")
@@ -126,6 +127,10 @@ export default function MainPokemonCard() {
       getPokemons(contextUrl);
     
     }, [contextSubmit])
+
+    useEffect(() => {
+        setContextSubmit(0)
+    }, [] )
 
 
     if (contextSubmit === null || pokemonDetail === null){

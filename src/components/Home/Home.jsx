@@ -34,12 +34,14 @@ export default function Home() {
   return (
     <div>
       <div className="card d-block">
+        <h3 className='col-3'>buscar</h3>
         <button className='btn col-1' onClick={handleClickSearch}>
           <img className='img-fluid' src={searchIcon} alt="search icon" />
         </button>
         <button className='btn col-1' onClick={handleClickFilter}>
         <img className='img-fluid' src={filterIcon} alt="filter icon" />
         </button>
+        <h3 className='col-3'>Filtrar</h3>
       </div>
       <div className="card">
       {renderSearch ? <><Seach/> <MainPokemonCard/></> : <></>}
