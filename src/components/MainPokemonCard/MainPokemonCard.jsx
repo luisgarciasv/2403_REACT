@@ -1,15 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import { submitContext, urlContext } from '../../App';
+import { bgContext, submitContext, urlContext } from '../../App';
 import arrowPrev from '../img/arrow-previous.svg';
 import arrowNext from '../img/arrow-next.svg';
-
+import Color from 'color-thief-react'
 
 export default function MainPokemonCard() {
 
     const [contextUrl, setContextUrl] = useContext(urlContext);
 
     const [contextSubmit, setContextSubmit] = useContext(submitContext);
+
+    const [contextBg, setContextBg] = useContext(bgContext);
   
     const [pokemonDetail, setPokemonDetail] = useState(null);
 
@@ -25,6 +27,8 @@ export default function MainPokemonCard() {
         prevName : '',
         nextName : ''
     });
+
+    const [cardColor, setCardColor] = useState();
 
     function checkGeneration (id) {
         if (id > 0 && id <= 151 ){
@@ -124,8 +128,8 @@ export default function MainPokemonCard() {
     
 
     useEffect(() => {
-      getPokemons(contextUrl);
-    
+        getPokemons(contextUrl);
+        
     }, [contextSubmit])
 
     useEffect(() => {
@@ -140,7 +144,7 @@ export default function MainPokemonCard() {
     }else{    
         return (
             <div >
-                <div className="card col-8 rounded mx-auto" style={{border: '10px solid black'}}>
+                <div className="m-3 card col-8 rounded mx-auto">
                     <div className="card-header d-inline-flex">
                         <div className="col-2 text-start">#{pokemonDetail.id}</div>
                         <div className="col-8">{capitalizeName(pokemonDetail.name)}</div>
@@ -164,7 +168,7 @@ export default function MainPokemonCard() {
                         <div className="col-3 text-center align-self-center pe-3">
                         
                             HP: {pokemonDetail.stats[0].base_stat} <br />
-                            <div style={{height : 8 + 'px'}} className='progress' role='progressbar' aria-label='HP stat' aria-valuenow='60' aria-valuemin='0' aria-valuemax='255'>
+                            <div style={{height : 8 + 'px'}} className='progress bg-transparent border-start border-end  border-1' role='progressbar' aria-label='HP stat' aria-valuenow='60' aria-valuemin='0' aria-valuemax='255'>
                             <div className='progress-bar bg-dark' style={{width : (pokemonDetail.stats[0].base_stat/255)*100 + '%'}}></div>
                             </div><br />
                             Attack: {pokemonDetail.stats[1].base_stat} <br />
@@ -226,6 +230,13 @@ export default function MainPokemonCard() {
                         
                     </div>
                 </div>
+                <Color src={pokemonDetail.sprites.other['official-artwork'].front_default} crossOrigin="anonymous" format="hex">
+                    {({ data, loading }) => {
+                        setCardColor(data)
+                        setContextBg(data)
+                        
+                    }}
+                </Color>
             </div>
         )
         }

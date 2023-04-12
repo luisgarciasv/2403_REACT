@@ -113,12 +113,12 @@ export default function Seach() {
     },[])
 
     return (
-        <div className="card">
+        <div className="card bg-transparent">
         <div className="card-header text-dark">
           Busca tu Pokemon</div>
         <div className="card-body">
          
-            <input type="text"  className='col-4'
+            <input type="text"  className='test-input'
             placeholder="Nombre Pokemon"
             onChange={handleName}
             onKeyDown={onKeyDown}

@@ -31,10 +31,9 @@ export default function Home() {
     }
   }
 
-
   return (
-    <div>
-      <div className="card d-block ">
+    <div  >
+      <div className="card d-block " >
         
         <button className='btn col-1' onClick={handleClickSearch}>
           <img className='img-search' src={searchIcon} alt="search icon" />

@@ -1,50 +1,17 @@
 body {
-  background-image: url(./components/img/Moon.svg);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: auto;
+  -webkit-transition: background-color 1s ease-in-out;
+  -moz-transition: background-color 1s ease-in-out;
+  -o-transition: background-color 1s ease-in-out;
+  transition: background-color 1s ease-in-out;
 }
 
+*{
+  background-color: transparent;
+}
 .App {
   text-align: center;
   
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 
 /* Autocomplete */
 
@@ -57,7 +24,12 @@ body {
 }
 
 .test-input {
-  width: 30%;
+  width: 29%;
+  background: white;
+  padding: 8px;
+  border: solid gray;
+  border-radius: 5px;
+
 }
 .no-autocomplete {
   color: #999;
