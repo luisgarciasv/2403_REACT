@@ -230,7 +230,7 @@ export default function MainPokemonCard() {
                             style={{cursor : 'pointer'}}
                             onClick={() => {setContextUrl(pokemonNumbers.previous); 
                             setContextSubmit(contextSubmit+1)}}> 
-                                <img style={{height: 60, width: 'auto', padding : 0, margin:0 }} src={footerSprite.prevSprite} alt={footerSprite.prevName}/>
+                                <img src={footerSprite.prevSprite} alt={footerSprite.prevName}/>
                                 <h3>{zeroFormat(pokemonNumbers.previous)}</h3>
                             </div>
                         )}
@@ -239,7 +239,7 @@ export default function MainPokemonCard() {
                             style={{cursor : 'pointer'}}
                             onClick={() => {setContextUrl(pokemonNumbers.next); 
                             setContextSubmit(contextSubmit+1)}}> 
-                                <img style={{height: 60, width: 'auto', padding : 0, margin:0 }} src={footerSprite.nextSprite} alt={footerSprite.nextName}/>  
+                                <img src={footerSprite.nextSprite} alt={footerSprite.nextName}/>  
                                 <h3>{zeroFormat(pokemonNumbers.next)}</h3>
                             </div>
                         )}
@@ -250,7 +250,6 @@ export default function MainPokemonCard() {
                 <Color src={pokemonDetail.sprites.other['official-artwork'].front_default} crossOrigin="anonymous" format="hex">
                     {({ data, loading }) => {
                         setContextBg(data);
-                        
                     }}
                 </Color>
             </div>

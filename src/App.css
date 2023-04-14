@@ -3,10 +3,10 @@
 
 body {
   font-family: 'Nunito', sans-serif;
-  -webkit-transition: background-color 1s ease-in-out;
-  -moz-transition: background-color 1s ease-in-out;
-  -o-transition: background-color 1s ease-in-out;
-  transition: background-color 1s ease-in-out;
+  -webkit-transition: background-color 1.5s ease-out;
+  -moz-transition: background-color 1.5s ease-out;
+  -o-transition: background-color 1.5s ease-out;
+  transition: background-color 1.5s ease-out;
 }
 
 *   {
@@ -17,7 +17,6 @@ body {
  div{
   border: 1px solid yellowgreen;
 }
-
 
 .App {
   text-align: center;
@@ -33,7 +32,9 @@ body {
 }
 
 .home-header img{
-  height: 40px;
+  height: 25px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .home-header img:hover{
@@ -41,7 +42,6 @@ body {
 }
 
 .main-title{
-  border: 1px solid blue;
   width: fit-content;
   display: inline-block;
   color: white;
@@ -174,13 +174,15 @@ button {
 .main-card-body{
   width: 100%;
   display: flex;
+  justify-content: center;
 }
 
 .img-container{
-  width: 60%;
+  width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 400px;
   
   
 }
@@ -188,16 +190,26 @@ button {
 .img-container img{
   width: 80%;
   
+  
 }
 
 .stats-container{
   width: 40%;
+  max-width: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-left: 50px
 }
 
 .main-card-footer{
   display: flex;
   justify-content: center;
+}
+
+.main-card-footer > img{
+  height: 100px;
+  width: auto;
+  padding : 0;
+  margin:0
 }
