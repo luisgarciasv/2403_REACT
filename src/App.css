@@ -1,17 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap');
+/*  font-family: 'Nunito', sans-serif;  */
+
 body {
+  font-family: 'Nunito', sans-serif;
   -webkit-transition: background-color 1s ease-in-out;
   -moz-transition: background-color 1s ease-in-out;
   -o-transition: background-color 1s ease-in-out;
   transition: background-color 1s ease-in-out;
 }
 
-*{
+*   {
   background-color: transparent;
+  margin: 5px;
 }
+
+ div{
+  border: 1px solid yellowgreen;
+}
+
+
 .App {
   text-align: center;
-  
 }
+
+/* Home Component */
+
+.home-header{
+  display: flex;
+  height: 80px;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-header img{
+  height: 40px;
+}
+
+.home-header img:hover{
+  cursor: pointer;
+}
+
+.main-title{
+  border: 1px solid blue;
+  width: fit-content;
+  display: inline-block;
+  color: white;
+  text-shadow: 1px 1px 5px rgba(3, 3, 3, 0.842);
+}
+
+/* Search Component */
 
 /* Autocomplete */
 
@@ -70,6 +107,8 @@ body {
   border-bottom: 1px solid #999;
 }
 
+/* Filter Component */
+
 button {
   color: white;
   font-weight: bold;
@@ -83,8 +122,6 @@ button {
   border: 1px solid #aaa;
   width: 100px;
 }
-
-
 
 .btnnormal{background-color: #A8A77A}
 .btnfire{background-color: #EE8130}
@@ -105,15 +142,6 @@ button {
 .btndark{background-color: #705746}
 .btnfairy{background-color: #D685AD}
 
-
-.img-search {
-  height: 50px;
-}
-
-.img-filter{
-  height: 50px;
-}
-
 .t-search{
   float: inline-start;
   padding: 0;
@@ -127,4 +155,49 @@ button {
   width: 100%;
   background-color: transparent;
   text-align: center;
+}
+
+/* Home Component*/
+
+.main-card-header{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: end;
+}
+
+.main-card-header h1{
+  line-height: 100%;
+}
+
+.main-card-body{
+  width: 100%;
+  display: flex;
+}
+
+.img-container{
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  
+}
+
+.img-container img{
+  width: 80%;
+  
+}
+
+.stats-container{
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main-card-footer{
+  display: flex;
+  justify-content: center;
 }

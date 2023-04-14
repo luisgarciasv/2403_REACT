@@ -12,38 +12,31 @@ export default function Home() {
   const [renderFilter , setRenderFilter] = useState(false);
 
   const handleClickSearch = () => {
-    if (renderSearch === false){
+  
       setRenderSearch(true);
       setRenderFilter(false)
-    } else {
-      setRenderSearch(false);
-      setRenderFilter(true)
-    }
+    
   }
 
   const handleClickFilter = () => {
-    if (renderFilter === false){
+    
       setRenderFilter(true);
       setRenderSearch(false)
-    }else {
-      setRenderFilter(false);
-      setRenderSearch(true)
-    }
+    
   }
 
   return (
     <div  >
-      <div className="card d-block " >
-        
-        <button className='btn col-1' onClick={handleClickSearch}>
-          <img className='img-search' src={searchIcon} alt="search icon" />
-          <p className='text-muted'>Search</p>
-        </button>
-        <button className='btn col-1' onClick={handleClickFilter}>
-        <img className='img-filter' src={filterIcon} alt="filter icon" />
-        <p className='text-muted'>Filter</p>
-        </button>
-        
+      <div className="home-header" >
+        <h1 className='main-title'>Pokedex</h1>
+        <img src={searchIcon} 
+        alt="search icon" 
+        role="button"
+        onClick={handleClickSearch}/>
+        <img src={filterIcon} 
+        alt="filter icon"
+        role="button"
+        onClick={handleClickFilter}/>
       </div>
       <div className="card">
       {renderSearch ? <><Seach/> <MainPokemonCard/></> : <></>}
