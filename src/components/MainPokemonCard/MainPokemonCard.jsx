@@ -149,13 +149,12 @@ export default function MainPokemonCard() {
 
     useEffect(() => {
         getPokemons(contextUrl);
-
+       
     }, [contextSubmit])
 
     useEffect(() => {
         setContextSubmit(0)
-        
-        
+     
     }, [] )
 
    
@@ -184,46 +183,46 @@ export default function MainPokemonCard() {
                     <div className="main-card-body">
                     
                         <div className="img-container">
-                            <img className='img-fluid p-4 mx-auto my-auto' 
+                            <img 
                             src={pokemonDetail.sprites.other['official-artwork'].front_default} 
                             alt={pokemonDetail.name}/>
                         </div>
 
                         <div className="stats-container">
                             <p>HP: {pokemonDetail.stats[0].base_stat}</p>
-                            <div style={{height : 8 + 'px'}} className='progress bg-transparent border-start border-end  border-1' 
-                            role='progressbar' aria-label='HP stat' aria-valuenow='60' aria-valuemin='0' aria-valuemax='255'>
-                            <div className='progress-bar bg-dark' style={{width : (pokemonDetail.stats[0].base_stat/255)*100 + '%'}}></div>
+                            <div  className='bar-container' role='progressbar' aria-label='HP stat' 
+                            aria-valuenow={pokemonDetail.stats[0].base_stat} aria-valuemin='0' aria-valuemax='255'>
+                            <div className='bar-content' style={{width : (pokemonDetail.stats[0].base_stat/255)*100 + '%'}}></div>
                             </div>
                             <p>Attack: {pokemonDetail.stats[1].base_stat}</p> 
-                            <div style={{height : 8 + 'px'}} className='progress' role='progressbar' aria-label='Attack stat' 
-                            aria-valuenow='60' aria-valuemin='0' aria-valuemax='255'>
-                            <div className='progress-bar bg-dark' style={{width : (pokemonDetail.stats[1].base_stat/255)*100 + '%'}}></div>
+                            <div className='bar-container' role='progressbar' aria-label='Attack stat' 
+                            aria-valuenow={pokemonDetail.stats[1].base_stat} aria-valuemin='0' aria-valuemax='255'>
+                            <div className='bar-content' style={{width : (pokemonDetail.stats[1].base_stat/255)*100 + '%'}}></div>
                             </div> 
                             <p>Defense: {pokemonDetail.stats[2].base_stat}</p> 
-                            <div style={{height : 8 + 'px'}} className='progress' role='progressbar' aria-label='Defense stat' 
-                            aria-valuenow='60' aria-valuemin='0' aria-valuemax='255'>
-                            <div className='progress-bar bg-dark' style={{width : (pokemonDetail.stats[2].base_stat/255)*100 + '%'}}></div>
+                            <div className='bar-container' role='progressbar' aria-label='Defense stat' 
+                            aria-valuenow={pokemonDetail.stats[2].base_stat} aria-valuemin='0' aria-valuemax='255'>
+                            <div className='bar-content' style={{width : (pokemonDetail.stats[2].base_stat/255)*100 + '%'}}></div>
                             </div>
                             <p>Sp. Atk: {pokemonDetail.stats[3].base_stat}</p> 
-                            <div style={{height : 8 + 'px'}} className='progress' role='progressbar' aria-label='Special attack stat' 
-                            aria-valuenow='60' aria-valuemin='0' aria-valuemax='255'>
-                            <div className='progress-bar bg-dark' style={{width : (pokemonDetail.stats[3].base_stat/255)*100 + '%'}}></div>
+                            <div className='bar-container' role='progressbar' aria-label='Special attack stat' 
+                            aria-valuenow={pokemonDetail.stats[3].base_stat} aria-valuemin='0' aria-valuemax='255'>
+                            <div className='bar-content' style={{width : (pokemonDetail.stats[3].base_stat/255)*100 + '%'}}></div>
                             </div>
                             <p>Sp. Def: {pokemonDetail.stats[4].base_stat}</p>
-                            <div style={{height : 8 + 'px'}} className='progress' role='progressbar' aria-label='Special defense stat' 
-                            aria-valuenow='60' aria-valuemin='0' aria-valuemax='255'>
-                            <div className='progress-bar bg-dark' style={{width : (pokemonDetail.stats[4].base_stat/255)*100 + '%'}}></div>
+                            <div className='bar-container' role='progressbar' aria-label='Special defense stat' 
+                            aria-valuenow={pokemonDetail.stats[4].base_stat} aria-valuemin='0' aria-valuemax='255'>
+                            <div className='bar-content' style={{width : (pokemonDetail.stats[4].base_stat/255)*100 + '%'}}></div>
                             </div>
                             <p>Speed: {pokemonDetail.stats[5].base_stat} </p>
-                            <div style={{height : 8 + 'px'}} className='progress' role='progressbar' aria-label='Speed stat' 
-                            aria-valuenow='60' aria-valuemin='0' aria-valuemax='255'>
-                            <div className='progress-bar bg-dark' style={{width : (pokemonDetail.stats[5].base_stat/255)*100 + '%'}}></div>
+                            <div className='bar-container' role='progressbar' aria-label='Speed stat' 
+                            aria-valuenow={pokemonDetail.stats[5].base_stat} aria-valuemin='0' aria-valuemax='255'>
+                            <div className='bar-content' style={{width : (pokemonDetail.stats[5].base_stat/255)*100 + '%'}}></div>
                             </div>
                             <p>Total: {getTotalStat()}</p> 
-                            <div style={{height : 8 + 'px'}} className='progress' role='progressbar' aria-label='Total stats' 
-                            aria-valuenow='60' aria-valuemin='0' aria-valuemax='750'>
-                            <div className='progress-bar bg-dark' style={{width : (getTotalStat()/750)*100 + '%'}}></div>
+                            <div className='bar-container' role='progressbar' aria-label='Total stats' 
+                            aria-valuenow={getTotalStat()} aria-valuemin='0' aria-valuemax='750'>
+                            <div className='bar-content' style={{width : (getTotalStat()/750)*100 + '%'}}></div>
                             </div>
                         </div>
                         
@@ -249,13 +248,14 @@ export default function MainPokemonCard() {
                             </div>
                         )}
 
-                        
                     </div>
                 
                 <Color src={pokemonDetail.sprites.other['official-artwork'].front_default} crossOrigin="anonymous" format="hex">
                     {({ data, loading }) => {
+                        loading ? <></> :
                         refColor.current = data;
                         setContextBg(refColor.current)
+                        console.log(refColor, contextBg, loading)
             
                     }}
                 </Color>

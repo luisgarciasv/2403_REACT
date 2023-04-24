@@ -113,19 +113,15 @@ export default function Seach() {
     },[])
 
     return (
-        <div className="card bg-transparent">
-        <div className="card-header text-dark">
-          Busca tu Pokemon</div>
-        <div className="card-body">
+      <div>
          
-            <input type="text"  className='test-input'
-            placeholder="Nombre Pokemon"
-            onChange={handleName}
-            onKeyDown={onKeyDown}
-            value={urlHandler}/>  
-            {renderAutocomplete()}
-          
-        </div>
-      </div>
+        <input type="text"  className='test-input'
+        placeholder="Pokemon Name"
+        onChange={handleName}
+        onKeyDown={onKeyDown}
+        value={urlHandler}/>  
+        {renderAutocomplete()}
+    
+      </div>    
   )
 }
