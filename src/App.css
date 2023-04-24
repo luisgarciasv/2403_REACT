@@ -3,10 +3,7 @@
 
 body {
   font-family: 'Nunito', sans-serif;
-  -webkit-transition: background-color 1s ease-in-out;
-  -moz-transition: background-color 1s ease-in-out;
-  -o-transition: background-color 1s ease-in-out;
-  transition: background-color 1s ease-in-out;
+  transition: background 1s ease;
 }
 
 *   {

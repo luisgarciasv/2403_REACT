@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { bgContext, submitContext, urlContext } from '../../App';
 import Color from 'color-thief-react'
+import { useRef } from 'react';
 
 export default function MainPokemonCard() {
 
@@ -26,7 +27,7 @@ export default function MainPokemonCard() {
         nextName : ''
     });
 
-    const [cardColor, setCardColor] = useState();
+    let refColor =  useRef(null);
 
     function checkGeneration (id) {
         if (id > 0 && id <= 151 ){
@@ -148,12 +149,16 @@ export default function MainPokemonCard() {
 
     useEffect(() => {
         getPokemons(contextUrl);
-        
+
     }, [contextSubmit])
 
     useEffect(() => {
         setContextSubmit(0)
+        
+        
     }, [] )
+
+   
 
 
     if (contextSubmit === 0 || pokemonDetail === null){
@@ -249,10 +254,13 @@ export default function MainPokemonCard() {
                 
                 <Color src={pokemonDetail.sprites.other['official-artwork'].front_default} crossOrigin="anonymous" format="hex">
                     {({ data, loading }) => {
-                        setContextBg(data);
-                        
+                        refColor.current = data;
+                        setContextBg(refColor.current)
+            
                     }}
                 </Color>
+
+                
             </div>
         )
         }
