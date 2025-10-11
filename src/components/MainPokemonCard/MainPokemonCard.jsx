@@ -102,17 +102,18 @@ export default function MainPokemonCard() {
 
         } else {
             await axios.get('https://pokeapi.co/api/v2/pokemon/' + url)
-                .then((response) => {
-                    console.log(response.data)
-                    setPokemonDetail(response.data);
+                .then( response => response.data)
+                .then( data => {
+                    //console.log(data)
+                    setPokemonDetail(data);
                     setPokemonNumbers({
-                        current: response.data.id,
-                        previous: response.data.id - 1,
-                        next: response.data.id + 1
+                        current: data.id,
+                        previous: data.id - 1,
+                        next: data.id + 1
                     });
                     //getSprites(response.data.id-1, response.data.id+1);
-                    getSpritesFooter(response.data.id - 1, response.data.id + 1);
-                    setBackgroundColor(pokemonDetail.sprites.other['official-artwork'].front_default);
+                    getSpritesFooter(data.id - 1, data.id + 1);
+                    setBackgroundColor(data.sprites.other['official-artwork'].front_default);
                 }).catch((error) => {
                     alert("El nombre o numero Pokemon no existe.");
                     console.log(error);
@@ -121,18 +122,20 @@ export default function MainPokemonCard() {
     }
 
     const setBackgroundColor = async (sprite) => {
-        await fac.getColorAsync(sprite, { algorithm: 'dominant' })
-            .then(res => {
-                console.log(res)
+        await fac.getColorAsync(sprite)
+            .then( res => {
+                // console.log(res)
                 refColor.current = res.hex;
                 setContextBg(refColor.current)
             })
+            .catch(err => {
+                console.log(err);
+            });
     }
 
-
     const getSpritesFooter = async (urlPrev, urlNext) => {
-        console.log(urlPrev)
-        console.log(urlNext)
+        // console.log(urlPrev)
+        // console.log(urlNext)
 
         if (urlPrev === 0) {
             await axios.get('https://pokeapi.co/api/v2/pokemon/' + urlNext)

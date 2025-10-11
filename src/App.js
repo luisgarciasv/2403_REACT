@@ -12,7 +12,7 @@ function App() {
   const [contextSubmit, setContextSubmit] = useState('');
   const [contextBg, setContextBg] = useState('')
 
-  document.body.style = `background: ${contextBg};` 
+  document.body.style = `background-color: ${contextBg};` 
 
   return (
     <bgContext.Provider value={[contextBg, setContextBg]}>
