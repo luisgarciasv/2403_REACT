@@ -1,6 +1,12 @@
 import { useContext, useEffect, useState, useRef } from "react";
 import { bgContext, submitContext, urlContext } from "../../App";
 import { FastAverageColor } from "fast-average-color";
+import {
+  checkGeneration,
+  capitalizeName,
+  getTotalStat,
+  zeroFormat,
+} from "../../helpers/helpers";
 import apiCall from "../apiCall";
 
 export default function MainPokemonCard() {
@@ -29,66 +35,7 @@ export default function MainPokemonCard() {
 
   const fac = new FastAverageColor();
 
-  function checkGeneration(id) {
-    if (id > 0 && id <= 151) {
-      return "Generation 1";
-    } else if (id > 151 && id <= 251) {
-      return "Generation 2";
-    } else if (id > 251 && id <= 386) {
-      return "Generation 3";
-    } else if (id > 386 && id <= 493) {
-      return "Generation 4";
-    } else if (id > 493 && id <= 649) {
-      return "Generation 5";
-    } else if (id > 649 && id <= 721) {
-      return "Generation 6";
-    } else if (id > 721 && id <= 809) {
-      return "Generation 7";
-    } else if (id > 809 && id <= 905) {
-      return "Generation 8";
-    } else if (id > 905 && id <= 1010) {
-      return "Generation 9";
-    } else {
-      return;
-    }
-  }
-
-  function capitalizeName(name) {
-    return name.charAt(0).toUpperCase() + name.slice(1);
-  }
-
-  function getTotalStat() {
-    return (
-      pokemonDetail.stats[0].base_stat +
-      pokemonDetail.stats[1].base_stat +
-      pokemonDetail.stats[2].base_stat +
-      pokemonDetail.stats[3].base_stat +
-      pokemonDetail.stats[4].base_stat +
-      pokemonDetail.stats[5].base_stat
-    );
-  }
-
-  function zeroFormat(id) {
-    let prefix = "";
-
-    switch (true) {
-      case id < 10:
-        prefix = "000";
-        break;
-      case id < 100:
-        prefix = "00";
-        break;
-      case id < 1000:
-        prefix = "0";
-        break;
-      default:
-        prefix = "";
-    }
-
-    return `#${prefix}${id}`;
-  }
-
-  const getPokemons = (url) => {
+  const getPokemon = (url) => {
     if (contextSubmit === 0) {
     } else if (contextUrl === "" && contextSubmit !== 0) {
     } else {
@@ -161,7 +108,7 @@ export default function MainPokemonCard() {
   };
 
   useEffect(() => {
-    getPokemons(contextUrl);
+    getPokemon(contextUrl);
   }, [contextSubmit]);
 
   useEffect(() => {
@@ -297,18 +244,20 @@ export default function MainPokemonCard() {
                 }}
               ></div>
             </div>
-            <p>Total: {getTotalStat()}</p>
+            <p>Total: {getTotalStat(pokemonDetail)}</p>
             <div
               className="bar-container"
               role="progressbar"
               aria-label="Total stats"
-              aria-valuenow={getTotalStat()}
+              aria-valuenow={getTotalStat(pokemonDetail)}
               aria-valuemin="0"
               aria-valuemax="750"
             >
               <div
                 className="bar-content"
-                style={{ width: (getTotalStat() / 750) * 100 + "%" }}
+                style={{
+                  width: (getTotalStat(pokemonDetail) / 750) * 100 + "%",
+                }}
               ></div>
             </div>
           </div>
@@ -325,7 +274,7 @@ export default function MainPokemonCard() {
               }}
             >
               <img
-                style={{ height: 60, width: "auto", padding: 0, margin: 0 }}
+                style={{ height: 96, padding: 0, margin: 0 }}
                 src={footerSprite.prevSprite}
                 alt={footerSprite.prevName}
               />
@@ -342,7 +291,7 @@ export default function MainPokemonCard() {
               }}
             >
               <img
-                style={{ height: 60, width: "auto", padding: 0, margin: 0 }}
+                style={{ height: 96, padding: 0, margin: 0 }}
                 src={footerSprite.nextSprite}
                 alt={footerSprite.nextName}
               />
