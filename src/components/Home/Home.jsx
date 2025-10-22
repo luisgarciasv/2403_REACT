@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { bgContext } from "../../App";
 import Filter from "../Filter/Filter";
 import MainPokemonCard from "../MainPokemonCard/MainPokemonCard";
@@ -6,6 +6,9 @@ import Search from "../Search/Search";
 import Footer from "../Footer/Footer";
 import searchIcon from "../img/search-icon.svg";
 import filterIcon from "../img/filter-icon.svg";
+
+import { SmallPokemonCardList } from "../SmallPokemonCardList";
+import apiCall from "../apiCall";
 
 export default function Home() {
   const [contextBg, setContextBg] = useContext(bgContext);
@@ -23,6 +26,18 @@ export default function Home() {
     setRenderSearch(false);
     setContextBg(null);
   };
+
+  ////// testing /////
+
+  // const [testPokeList, setTestPokeList] = useState({});
+  // const [loadedPokeList, setLoadedPokeList] = useState(false);
+
+  // useEffect(() => {
+  //   apiCall("/pokemon").then((res) => {
+  //     setTestPokeList(res.results);
+  //     setLoadedPokeList(true);
+  //   });
+  // }, []);
 
   return (
     <div>
@@ -53,6 +68,12 @@ export default function Home() {
         )}
         {renderFilter ? <Filter /> : <></>}
       </div>
+
+      {/* {loadedPokeList && (
+        <SmallPokemonCardList
+          pokemonCardList={testPokeList}
+        ></SmallPokemonCardList>
+      )} */}
 
       <Footer />
     </div>

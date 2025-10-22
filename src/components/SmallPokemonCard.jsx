@@ -12,8 +12,8 @@ export default function SmallPokemonCard({ pokeName }) {
   const [loading, setLoading] = useState(true);
   // const [error, setError] = useState({});
 
-  const getPokemon = () => {
-    apiCall("pokemon/" + pokeName)
+  const getPokemon = (auxUrl) => {
+    apiCall(auxUrl)
       .then((res) => {
         setPokemonDetail(res);
         setLoading(false);
@@ -22,7 +22,7 @@ export default function SmallPokemonCard({ pokeName }) {
   };
 
   useEffect(() => {
-    getPokemon();
+    getPokemon("pokemon/" + pokeName);
   }, []);
 
   if (loading) {
@@ -30,11 +30,7 @@ export default function SmallPokemonCard({ pokeName }) {
   } else {
     return (
       <div
-        className="small-pokemon-card "
-        style={{
-          width: 100,
-          height: 170,
-        }}
+        className="small-pokemon-card"
         onClick={() => {
           setContextUrl(pokemonDetail.id);
           setContextSubmit(contextSubmit + 1);

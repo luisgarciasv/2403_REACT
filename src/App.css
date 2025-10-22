@@ -216,9 +216,20 @@ button {
   justify-content: center;
 }
 
-.main-card-footer > img{
+.small-pokemon-card-list{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.small-pokemon-card{
+  width: 100px;
+  height: 170px;
+}
+
+/* .main-card-footer > img{
   height: 100px;
   width: auto;
   padding : 0;
   margin:0
-}
+} */

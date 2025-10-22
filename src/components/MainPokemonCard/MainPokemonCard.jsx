@@ -9,6 +9,8 @@ import {
 } from "../../helpers/helpers";
 import apiCall from "../apiCall";
 
+import SmallPokemonCard from "../SmallPokemonCard";
+
 export default function MainPokemonCard() {
   const [contextUrl, setContextUrl] = useContext(urlContext);
 
@@ -96,7 +98,7 @@ export default function MainPokemonCard() {
         apiCall("pokemon/" + urlPrev),
         apiCall("pokemon/" + urlNext),
       ]).then(([pokemonPrev, pokemonNext]) => {
-        console.log(pokemonNext, pokemonPrev);
+        // console.log(pokemonNext, pokemonPrev);
         setFooterSprite({
           prevSprite: pokemonPrev.sprites.front_default,
           nextSprite: pokemonNext.sprites.front_default,
@@ -262,7 +264,7 @@ export default function MainPokemonCard() {
             </div>
           </div>
         </div>
-
+        {/* /////////////////////////////////////// Footer ////////////////////////// */}
         <div className="main-card-footer">
           {pokemonNumbers.current > 1 && (
             <div
@@ -299,6 +301,8 @@ export default function MainPokemonCard() {
             </div>
           )}
         </div>
+
+        <SmallPokemonCard pokeName={pokemonDetail.name}></SmallPokemonCard>
       </div>
     );
   }
