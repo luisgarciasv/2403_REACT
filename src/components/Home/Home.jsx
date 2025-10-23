@@ -7,8 +7,8 @@ import Footer from "../Footer/Footer";
 import searchIcon from "../img/search-icon.svg";
 import filterIcon from "../img/filter-icon.svg";
 
-import { SmallPokemonCardList } from "../SmallPokemonCardList";
-import apiCall from "../apiCall";
+import { SmallPokemonCardList } from "../SmallPokemonCardList/SmallPokemonCardList";
+import apiCall from "../../helpers/apiCall";
 
 export default function Home() {
   const [contextBg, setContextBg] = useContext(bgContext);

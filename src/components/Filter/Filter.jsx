@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import apiCall from "../apiCall";
+import apiCall from "../../helpers/apiCall";
 import FilterCard from "./FilterCard";
 
 export default function Filter() {

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { urlContext } from "../../App";
 import { submitContext } from "../../App";
-import apiCall from "../apiCall";
+import apiCall from "../../helpers/apiCall";
 
 export default function Search() {
   const [contextSubmit, setContextSubmit] = useContext(submitContext);

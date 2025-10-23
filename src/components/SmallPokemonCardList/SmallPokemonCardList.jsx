@@ -1,4 +1,4 @@
-import SmallPokemonCard from "./SmallPokemonCard";
+import SmallPokemonCard from "../SmallPokemonCard/SmallPokemonCard";
 
 export function SmallPokemonCardList({ pokemonCardList }) {
   // console.log(pokemonCardList);

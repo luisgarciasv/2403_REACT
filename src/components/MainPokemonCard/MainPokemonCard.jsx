@@ -7,9 +7,9 @@ import {
   getTotalStat,
   zeroFormat,
 } from "../../helpers/helpers";
-import apiCall from "../apiCall";
+import apiCall from "../../helpers/apiCall";
 
-import SmallPokemonCard from "../SmallPokemonCard";
+import SmallPokemonCard from "../SmallPokemonCard/SmallPokemonCard";
 
 export default function MainPokemonCard() {
   const [contextUrl, setContextUrl] = useContext(urlContext);

@@ -1,4 +1,4 @@
-import apiCall from "../apiCall";
+import apiCall from "../../helpers/apiCall";
 import { useEffect } from "react";
 import { useState } from "react";
 import loadingGif from "../img/loading.gif";

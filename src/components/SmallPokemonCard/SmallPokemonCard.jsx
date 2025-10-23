@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import { submitContext, urlContext } from "../App";
-import apiCall from "./apiCall";
-import { zeroFormat, capitalizeName } from "../helpers/helpers";
-import loadingGif from "./img/loading.gif";
+import { submitContext, urlContext } from "../../App";
+import apiCall from "../../helpers/apiCall";
+import { zeroFormat, capitalizeName } from "../../helpers/helpers";
+import loadingGif from "../img/loading.gif";
 
 export default function SmallPokemonCard({ pokeName }) {
   const [contextUrl, setContextUrl] = useContext(urlContext);
