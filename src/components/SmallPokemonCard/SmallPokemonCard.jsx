@@ -1,39 +1,28 @@
-import { useContext, useEffect, useState } from "react";
-import { submitContext, urlContext } from "../../App";
-import apiCall from "../../helpers/apiCall";
+import { useContext } from "react";
+import { UrlContext } from "../AppContextProvider/AppContextProvider";
 import { zeroFormat, capitalizeName } from "../../helpers/helpers";
 import loadingGif from "../img/loading.gif";
+import style from "./SmallPokemonCard.module.css";
+import usePokemonDetail from "../../hooks/usePokemonDetail";
 
-export default function SmallPokemonCard({ pokeName }) {
-  const [contextUrl, setContextUrl] = useContext(urlContext);
-  const [contextSubmit, setContextSubmit] = useContext(submitContext);
-  const [pokemonDetail, setPokemonDetail] = useState({});
+export default function SmallPokemonCard({ pokeName, isCurrent = false }) {
+  const { setContextUrl } = useContext(UrlContext);
 
-  const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState({});
+  const { pokemonDetail, apiRes } = usePokemonDetail(pokeName);
 
-  const getPokemon = (auxUrl) => {
-    apiCall(auxUrl)
-      .then((res) => {
-        setPokemonDetail(res);
-        setLoading(false);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    getPokemon("pokemon/" + pokeName);
-  }, []);
-
-  if (loading) {
+  if (!apiRes) {
     return <img src={loadingGif} style={{ width: 110 }} />;
   } else {
     return (
       <div
-        className="small-pokemon-card"
+        className={`${style.small_pokemon_card} ${
+          isCurrent ? style.current : ""
+        }`}
         onClick={() => {
-          setContextUrl(pokemonDetail.id);
-          setContextSubmit(contextSubmit + 1);
+          if (isCurrent) {
+          } else {
+            setContextUrl(pokemonDetail.name);
+          }
         }}
       >
         <img src={pokemonDetail.sprites.front_default} alt={pokeName} />
